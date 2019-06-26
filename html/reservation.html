@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.js"></script>
+
+<!-- Font Awesom cheat sheet -->
+<!-- https://kapeli.com/cheat_sheets/Font_Awesome.docset/Contents/Resources/Documents/index -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" rel="stylesheet">
+
+</head>
+<link href="css/style.css" rel="stylesheet">
+<body>
+   <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">จอง  ดูงาน + บำเพ็ญ</div>
+            </div>  
+            <div class="panel-body" >
+                <div class="form-group">
+                    <label class="control-label col-md-4  "> ชื่อ</label>
+                    <label class="control-label col-md-8  "> เงินทอน จึงรุ่งเรืองดี</label>
+                </div>                  
+                <div class="form-group">
+                    <label class="control-label col-md-4  "> ชั้น</label>
+                    <label class="control-label col-md-8  "> 6/19</label>
+                </div>    
+                <div class="form-group">                    
+                    <label class="control-label col-md-4  "> เลขที่</label>
+                    <label class="control-label col-md-8  "> 1234567</label>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label col-md-12  "> เลือกลำดับดูงาน</label>
+                </div>                    
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  "> อันดับ 1</label>
+                    <select class="custom-select custom-select-sm col-md-8  ">
+                        <option>แกล้งเด็ก กำพร้า</option>
+                        <option>กวนตรีนพระ</option>
+                        <option>มีเรื่องกับ แท็กซี่</option>
+                        <option>โดน ตบเกรียน</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  "> อันดับ 2</label>
+                    <select class="custom-select custom-select-sm col-md-8  ">
+                        <option>แกล้งเด็ก กำพร้า</option>
+                        <option>กวนตรีนพระ</option>
+                        <option>มีเรื่องกับ แท็กซี่</option>
+                        <option>โดน ตบเกรียน</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  "> อันดับ 3</label>
+                    <select class="custom-select custom-select-sm col-md-8  ">
+                        <option>แกล้งเด็ก กำพร้า</option>
+                        <option>กวนตรีนพระ</option>
+                        <option>มีเรื่องกับ แท็กซี่</option>
+                        <option>โดน ตบเกรียน</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  "> อันดับ 4</label>
+                    <select class="custom-select custom-select-sm col-md-8  ">
+                        <option>แกล้งเด็ก กำพร้า</option>
+                        <option>กวนตรีนพระ</option>
+                        <option>มีเรื่องกับ แท็กซี่</option>
+                        <option>โดน ตบเกรียน</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="controls col-md-4">
+                    </div>
+                    <div class="controls col-md-8">
+                    <button onclick="doClick()">ทำการจอง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+<script>    
+function doClick(){
+    Swal.fire({
+      title: 'ขอแสดงความยินดี!',
+      text: 'คุณ ได้ลงชื่อเข้าร่วมกิจกรรม เรียบร้อยแล้ว',
+      type: 'success',
+      confirmButtonText: 'ตกลง'
+    }).then((result) => {
+        window.location.href="statuscheck.html";
+        //console.log(result);
+    })
+}
+</script>   
+</body>
+</html>

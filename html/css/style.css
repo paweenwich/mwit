@@ -7,7 +7,7 @@
 body {
   font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   /*padding-top: 54px;*/
-  color: #868e96;
+  /*color: #868e96;*/
 }
 
 @media (min-width: 992px) {
@@ -42,9 +42,49 @@ h3 {
   font-size: 1.5rem;
 }
 
+.navbar-default {
+    background-color: #D9EDF7;
+    border-color: #e7e7e7;
+}
+
 .mainbox {
     margin-top:50px;
 }
+
+.container {
+  font-size: 100pt;
+  text-align: center;
+}
+
+.jst-hours {
+  float: left;
+}
+.jst-minutes {
+  float: left;
+}
+.jst-seconds {
+  float: left;
+}
+.jst-clearDiv {
+  clear: both;
+}
+
+.bodyTimeoutBackground {
+  background: white;
+}
+
+.timeout {
+  color: red;
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  -webkit-animation-duration: 1s;
+}
+@-webkit-keyframes blinker {
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+
 
 p.lead {
   font-size: 1.15rem;
@@ -190,9 +230,10 @@ section.resume-section .resume-item .resume-date {
 }
 
 a {
-  color: #BD5D38;
+  /*color: #BD5D38;*/
 }
 
 a:hover, a:focus, a:active {
-  color: #824027;
+  color: #FFFFFF;
+  background-color: #4771A5 !important;
 }

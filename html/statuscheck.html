@@ -33,10 +33,10 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-4  "> ประเภทกิจกรรม</label>
-                    <select class="custom-select custom-select-sm col-md-8  ">
-                        <option>ดูงาน</option>
-                        <option>ฟังบรรยาย</option>
-                        <option>บำเพ็ญ</option>
+                    <select id="activity" class="custom-select custom-select-sm col-md-8  ">
+                        <option value="บำเพ็ญ">บำเพ็ญ</option>                    
+                        <option value="ดูงาน">ดูงาน</option>
+                        <option value="ฟังบรรยาย">ฟังบรรยาย</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -49,46 +49,62 @@
                       </th>
                       <th class="th-sm">สถานที่
                       </th>
-                      <th class="th-sm">หมายเหตุ
+                      <th class="th-sm">ประเภท
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2011/07/25</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                    </tr>
-                    <tr>
-                      <td>2011/07/25</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                    </tr>
-                    <tr>
-                      <td>2011/07/25</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>66</td>
-                    </tr>
-                    </tbody>
+                  </tbody>
                 </table>
                 </div>
             </div>
         </div>
     </div>  
 <script>
-$(document).ready(function () {
-    //$.noConflict();
+function reloadData()
+{
+    var activity = $("#activity").val();
+    var currentData = [];
+    data.forEach(function(item,index){
+        if(item[3] == activity){
+            currentData.push(item);
+        }
+    });
+    if ( $.fn.DataTable.isDataTable('#dtBasicExample') ) {
+        $('#dtBasicExample').DataTable().destroy();
+    }
+    $('#dtBasicExample tbody').empty();
     $('#dtBasicExample').DataTable(
         {
             paging: false,
             searching: false,
+            data: currentData,
         }
     );
-    $('.dataTables_length').addClass('bs-select');
+}
+$(document).ready(function () {
+    data = [
+        ["2011/07/25","1 Junior Technical Author","San Francisco","บำเพ็ญ",],
+        ["2011/07/26","1 System Architect","Edinburgh","บำเพ็ญ",],
+        ["2011/07/27","1 Accountant","Tokyo","บำเพ็ญ",],
+        ["2011/07/28","1 นักการเมือง","กรุงเทพ","บำเพ็ญ",],
+        ["2011/08/25","2 Junior Technical Author","San Francisco","ฟังบรรยาย",],
+        ["2011/08/26","2 System Architect","Edinburgh","ฟังบรรยาย",],
+        ["2011/08/27","2 Accountant","Tokyo","ฟังบรรยาย",],
+        ["2011/08/28","2 นักการเมือง","กรุงเทพ","ฟังบรรยาย",],
+        ["2011/09/25","3 Junior Technical Author","San Francisco","ดูงาน",],
+        ["2011/09/26","3 System Architect","Edinburgh","ดูงาน",],
+        ["2011/09/27","3 Accountant","Tokyo","ดูงาน",],
+        ["2011/09/28","3 นักการเมือง","กรุงเทพ","ดูงาน",],
+    ];
+    reloadData();
+    //$.noConflict();
+    //$('.dataTables_length').addClass('bs-select');
+    $( "#activity" ).change(function() {
+        reloadData();
+    });
 });
+
 </script>    
 </body>
 </html>

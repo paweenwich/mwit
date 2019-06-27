@@ -87,6 +87,10 @@ h3 {
   color: #333333;
 }
 
+.odd  td{
+  background-color: #F3F8FF;
+}
+
 .bodyTimeoutBackground {
   background: white;
 }

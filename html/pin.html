@@ -16,6 +16,8 @@
 <script src="countdown/jquery.simple.timer.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel='stylesheet' type='text/css'>
 </head>
 <link href="css/style.css" rel="stylesheet">
 <body>
@@ -26,15 +28,15 @@
             </div>  
 
             <div class="panel-body" >
-                    <div class="form-group">
-                        <label class="align-middle control-label col-md-4  requiredField"> เหลือเวลาอีก</label>
-                        <div class="text-center">
-                            <h1 class='timer align-middle' data-seconds-left=10></h1>            
+                    <div class="form-group col-md-12">
+                        <label class="control-label col-md-4" style="line-height: 100px;"> เหลือเวลาอีก</label>
+                        <div class="text-center col-md-8">
+                            <h1 style="font-family:'Orbitron';font-size:50px" class='timer align-middle' data-seconds-left=10></h1>            
                         </div>
                     </div>
                 
-                    <div id="div_id_pin" class="form-group required">
-                        <label class="control-label col-md-4  requiredField"> PIN<span class="asteriskField">*</span> </label>
+                    <div id="div_id_pin" class="form-group col-md-12">
+                        <label class="control-label col-md-4" style="line-height: 30px;"> PIN</label>
                         <div class="controls col-md-8 ">
                             <input class="input-md form-control" id="pin" name="pin" placeholder="Your current PIN" style="margin-bottom: 10px" type="email" />
                         </div>     

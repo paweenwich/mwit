@@ -29,8 +29,9 @@ h6 {
   color: #31708F;
 }
 
-a {
+a, th {
     color: #31708F;
+    background-color: #D9EDF7;
     text-decoration: none;
     font-size: 14px;
 }
@@ -80,6 +81,10 @@ h3 {
 }
 .jst-clearDiv {
   clear: both;
+}
+
+.timer {
+  color: #333333;
 }
 
 .bodyTimeoutBackground {
@@ -268,7 +273,7 @@ a {
   /*color: #BD5D38;*/
 }
 
-a:hover, a:focus, a:active {
+a.nav-link:hover, a.nav-link:focus, a.nav-link:active {
   color: #FFFFFF;
   background-color: #4771A5 !important;
 }

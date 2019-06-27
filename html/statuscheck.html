@@ -8,32 +8,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.js"></script>
 <!-- Font Awesom cheat sheet -->
 <!-- https://kapeli.com/cheat_sheets/Font_Awesome.docset/Contents/Resources/Documents/index -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>-->
+
+<!-- DataTables CSS -->
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-
-
-<!-- DataTables Select CSS -->
 <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet">
-<!-- DataTables Select JS -->
 <script href="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js" rel="stylesheet"></script>
+
 </head>
 <link href="css/style.css" rel="stylesheet">
 <body>
    <div class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">เชค สถานะ</div>
-                <div style="float:right; position: relative; top:-20px"><a id="signinlink" href="reservation.html">จอง  ดูงาน + บำเพ็ญ</a></div>
+                <div class="panel-title"><i class="fa fa-calendar-check"></i> เชคสถานะการจอง</div>
+                <div style="float:right; position: relative; top:-20px"><a id="signinlink" href="reservation.html">จอง <i class="fa fa-pen"></i></a></div>
             </div>  
             <div class="panel-body" >
                 <div class="form-group">
                     <label class="control-label col-md-4  "> ชื่อ</label>
                     <label class="control-label col-md-8  "> เงินทอน จึงรุ่งเรืองดี</label>
+                    <label class="control-label col-md-4  "> รหัส</label>
+                    <label class="control-label col-md-8  "> 12345678</label>
                 </div>
-                <div class="form-group">
+                <div class="form-group invisible">
                     <label class="control-label col-md-4  "> ประเภทกิจกรรม</label>
                     <select id="activity" class="custom-select custom-select-sm col-md-8  ">
+                        <option value="ทั้งหมด">ทั้งหมด</option>
                         <option value="บำเพ็ญ">บำเพ็ญ</option>                    
                         <option value="ดูงาน">ดูงาน</option>
                         <option value="ฟังบรรยาย">ฟังบรรยาย</option>
@@ -63,17 +66,26 @@
 <script>
 function reloadData()
 {
+    //Assume get this data from backend
+    var data = [
+        ["2017/07/23","ดูงาน ันที่ 23 กรกฏาคม 2562","โรงฆ่าสัตว์","ดูงาน",],
+        ["2011/08/01","บำเพ็ญ วันที่ 1 สิงหาคม 2562'","แกล้งคนพิการทางสมอง","บำเพ็ญ",],
+    ];
+    //Preprocess data 
     var activity = $("#activity").val();
     var currentData = [];
     data.forEach(function(item,index){
-        if(item[3] == activity){
+        if((item[3] == activity) || (activity == "ทั้งหมด")){
             currentData.push(item);
         }
     });
+    //Kill old datatables (Datatable does not support reload
     if ( $.fn.DataTable.isDataTable('#dtBasicExample') ) {
         $('#dtBasicExample').DataTable().destroy();
     }
     $('#dtBasicExample tbody').empty();
+    
+    //Create new 
     $('#dtBasicExample').DataTable(
         {
             paging: false,
@@ -83,26 +95,12 @@ function reloadData()
     );
 }
 $(document).ready(function () {
-    data = [
-        ["2011/07/25","1 Junior Technical Author","San Francisco","บำเพ็ญ",],
-        ["2011/07/26","1 System Architect","Edinburgh","บำเพ็ญ",],
-        ["2011/07/27","1 Accountant","Tokyo","บำเพ็ญ",],
-        ["2011/07/28","1 นักการเมือง","กรุงเทพ","บำเพ็ญ",],
-        ["2011/08/25","2 Junior Technical Author","San Francisco","ฟังบรรยาย",],
-        ["2011/08/26","2 System Architect","Edinburgh","ฟังบรรยาย",],
-        ["2011/08/27","2 Accountant","Tokyo","ฟังบรรยาย",],
-        ["2011/08/28","2 นักการเมือง","กรุงเทพ","ฟังบรรยาย",],
-        ["2011/09/25","3 Junior Technical Author","San Francisco","ดูงาน",],
-        ["2011/09/26","3 System Architect","Edinburgh","ดูงาน",],
-        ["2011/09/27","3 Accountant","Tokyo","ดูงาน",],
-        ["2011/09/28","3 นักการเมือง","กรุงเทพ","ดูงาน",],
-    ];
-    reloadData();
-    //$.noConflict();
-    //$('.dataTables_length').addClass('bs-select');
+    //Hook select activity change
     $( "#activity" ).change(function() {
         reloadData();
     });
+    //Load data to table
+    reloadData();
 });
 
 </script>    

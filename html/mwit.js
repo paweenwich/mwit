@@ -1,28 +1,38 @@
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      } 
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
-    }
-  }
-}
-includeHTML();
+/*
+    Fake data 
+*/
+var mwit_activities = [
+    {
+        id: 256201,
+        type: "บำเพ็ญ",
+        title: 'บำเพ็ญ วันที่ 12-30 ตุลาคม 2562',
+        list: [
+            { title:"ตบเกรียนเด็กแว่น", detail:"" }, 
+            { title:"ล้างส้วมหอชาย", detail:"" }, 
+            { title:"ล้างส้วมหอหญิง", detail:"" }, 
+            { title:"ตัดหญ้าสนามฟุตบอล", detail:"" }, 
+        ]
+    },    
+    {
+        id: 256202,
+        type: "ดูงาน",
+        title: 'ดูงาน วันที่ 12-30 กันยายน 2562',
+        list: [
+            { title:"มหาวิทยาลัยราชภัฏรำไพพรรณี", detail:"" }, 
+            { title:"สถาบันการพลศึกษา วิทยาเขตสมุทรสาคร", detail:"" }, 
+            { title:"คณะวิทยาการเรียนรู้และศึกษาศาสตร์ มหาวิทยาลัยธรรมศาสตร์", detail:"" }, 
+            { title:"คณะวิทยาศาสตร์การกีฬา มหาวิทยาลัยบูรพา", detail:"" }, 
+        ]
+    },
+    {
+        id: 256203,
+        type: "ฟังบรรยาย",
+        title: 'ฟังบรรยาย วันที่ 12-30 ธันวาคม 2562',
+        list: [
+            { title:"โรงเรียน วิทยาศาสตร์ ทหาร และ การแสดง", detail:"" }, 
+            { title:"การเมืองไทย จากอนาคตใหม่ สู่ อนาคตเดิม", detail:"" }, 
+        ]
+    },    
+    
+];
+console.log("mwit.js loaded");

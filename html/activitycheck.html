@@ -8,18 +8,104 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.js"></script>
 <!-- Font Awesom cheat sheet -->
 <!-- https://kapeli.com/cheat_sheets/Font_Awesome.docset/Contents/Resources/Documents/index -->
+
+<!-- DataTables CSS -->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet">
+<script href="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js" rel="stylesheet"></script>
+
 </head>
 <link href="css/style.css" rel="stylesheet">
 <body>
-   <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+   <div class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">เชค ชม การทำกิจกรรม</div>
+                <div class="panel-title"><i class="fa fa-user-check"></i> เชค ชม การทำกิจกรรม</div>
+                <div style="float:right; position: relative; top:-20px"><a id="signinlink" href="reservation.html"> จอง <i class="fa fa-pen"></i></a></div>                
             </div>  
             <div class="panel-body" >
-                
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  "> ชื่อ</label>
+                    <label class="control-label col-md-8  "> เงินทอน จึงรุ่งเรืองดี</label>
+                    <label class="control-label col-md-4  "> รหัส</label>
+                    <label class="control-label col-md-8  "> 12345678</label>
+                </div>
+                <div class="form-group">
+                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th class="th-sm">กิจกรรม
+                      </th>
+                      <th class="th-sm">ชมที่ต้องการ 
+                      </th>
+                      <th class="th-sm">ชมที่ทำ
+                      </th>
+                      <th class="th-sm">ชมที่ต้องทำ
+                      </th>
+                      <th class="th-sm">สถานะ
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                </div>
             </div>
         </div>
-    </div>  
+    </div> 
+<script>
+function jsonCopy(src) {
+  return JSON.parse(JSON.stringify(src));
+}
+function reloadData()
+{
+    //Assume get this data from backend
+    var data = [
+        ["บำเพ็ญ",30,35],
+        ["ดูงาน",20,15],
+        ["คุณธรรม",10,10],
+        ["ฟังวิทย์",30,2],
+        ["ฟังสังคม",30,0],
+    ];
+    
+    // Preproces data
+    data.forEach(function(item,index){
+        // compute hour left 
+        var hourLeft = Math.max(item[1] - item[2],0);
+        item.push(hourLeft);
+        // add icon
+        if(hourLeft==0){
+            item.push('รอดแล้ว <i class="fa fa-check pass"></i>');
+        }else{
+            item.push('สู้ต่อไป <i class="fa fa-times notpass"></i>');
+        }
+    });
+    //Kill old datatables (Datatable does not support reload
+    if ( $.fn.DataTable.isDataTable('#dtBasicExample') ) {
+        $('#dtBasicExample').DataTable().destroy();
+    }
+    $('#dtBasicExample tbody').empty();
+    
+    //Create new 
+    $('#dtBasicExample').DataTable(
+        {
+            paging: false,
+            searching: false,
+            columnDefs: [
+                {targets: 0, className: 'dt-left'},  // high priority
+                {targets: "_all", className: 'dt-body-right'},   
+            ],
+            data: data,
+        }
+    );
+}
+$(document).ready(function () {
+    //Load data to table
+    reloadData();
+});
+
+</script>    
 </body>
 </html>

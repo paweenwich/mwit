@@ -9,26 +9,46 @@
 <!-- Font Awesom cheat sheet -->
 <!-- https://kapeli.com/cheat_sheets/Font_Awesome.docset/Contents/Resources/Documents/index -->
 <link href="css/style.css" rel="stylesheet">
+<script src="mwit.js"></script>
 </head>
 <body>
 <div class="container-fluid p-0">
-   <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+   <div class="mainbox col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">News</div>
+                <div class="panel-title"><i class="fa fa-home"></i> รายการกิจกรรม</div>
+                <div style="float:right; position: relative; top:-20px"><a id="signinlink" href="reservation.html"> จอง <i class="fa fa-pen"></i></a></div>
             </div>  
-            <div class="panel-body" >
-                <div class="jumbotron">
-                    <h2>Bootstrap Tutorial</h2> 
-                    <p>Bootstrap is the most popular HTML, CSS...</p> 
-                </div>
-                <div class="jumbotron">
-                    <h2>This is a book</h2> 
-                    <p>I am experienced in leveraging agile frameworks ..</p> 
-                </div>
-            </div>
+            <div id="activity" class="panel-body">
         </div>
     </div>    
 </div>
+<div id="template" class="invisible">
+<div class="jumbotron">
+    <p>{{title}}</p> 
+    <ul>{{list}}</ul>
+</div>
+</div>
+<script>
+function reloadData()
+{
+    var template = $("#template").html();
+    mwit_activities.forEach(function(item,index){
+        var html = template.replace("{{title}}", item.title);
+        var list = ""
+        item.list.forEach(function(item,index){
+            list += "<li><div>" + item.title + "</div></li>";
+        });
+        html = html.replace("{{list}}", list);
+        //console.log(html);
+        $("#activity").append(html);
+    });
+}
+
+$(document).ready(function () {
+    //Load data to table
+    reloadData();
+});
+</script>
 </body>
 </html>

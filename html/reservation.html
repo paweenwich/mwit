@@ -15,62 +15,49 @@
 
 </head>
 <link href="css/style.css" rel="stylesheet">
+<script src="mwit.js"></script>
 <body>
    <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">จอง  ดูงาน + บำเพ็ญ</div>
+                <div class="panel-title"><i class="fa fa-pen"></i> จอง</div>
             </div>  
             <div class="panel-body" >
-                <div class="form-group">
+                <div class="form-group col-md-12">
                     <label class="control-label col-md-4  "> ชื่อ</label>
                     <label class="control-label col-md-8  "> เงินทอน จึงรุ่งเรืองดี</label>
-                </div>                  
-                <div class="form-group">
                     <label class="control-label col-md-4  "> ชั้น</label>
                     <label class="control-label col-md-8  "> 6/19</label>
-                </div>    
-                <div class="form-group">                    
                     <label class="control-label col-md-4  "> เลขที่</label>
                     <label class="control-label col-md-8  "> 1234567</label>
                 </div>
-                <div class="form-group ">
-                    <label class="control-label col-md-12  "> เลือกลำดับดูงาน</label>
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-4  ">  กิจกรรม</label>
+                    <select id="activity" class="custom-select custom-select-sm col-md-8  ">
+                    </select>
                 </div>                    
+                
                 <div class="form-group col-md-12">
+                    <label class="control-label col-md-12  "> เลือกลำดับ</label>
+                </div>                    
+                <div id="select1" class="activity-div form-group col-md-12">
                     <label class="control-label col-md-4  "> อันดับ 1</label>
-                    <select class="custom-select custom-select-sm col-md-8  ">
-                        <option>แกล้งเด็ก กำพร้า</option>
-                        <option>กวนตรีนพระ</option>
-                        <option>มีเรื่องกับ แท็กซี่</option>
-                        <option>โดน ตบเกรียน</option>
+                    <select class="activity-option custom-select custom-select-sm col-md-8  ">
                     </select>
                 </div>
-                <div class="form-group col-md-12">
+                <div id="select2" class="activity-div form-group col-md-12">
                     <label class="control-label col-md-4  "> อันดับ 2</label>
-                    <select class="custom-select custom-select-sm col-md-8  ">
-                        <option>แกล้งเด็ก กำพร้า</option>
-                        <option>กวนตรีนพระ</option>
-                        <option>มีเรื่องกับ แท็กซี่</option>
-                        <option>โดน ตบเกรียน</option>
+                    <select class="activity-option custom-select custom-select-sm col-md-8  ">
                     </select>
                 </div>
-                <div class="form-group col-md-12">
+                <div id="select3" class="activity-div form-group col-md-12">
                     <label class="control-label col-md-4  "> อันดับ 3</label>
-                    <select class="custom-select custom-select-sm col-md-8  ">
-                        <option>แกล้งเด็ก กำพร้า</option>
-                        <option>กวนตรีนพระ</option>
-                        <option>มีเรื่องกับ แท็กซี่</option>
-                        <option>โดน ตบเกรียน</option>
+                    <select class="activity-option custom-select custom-select-sm col-md-8  ">
                     </select>
                 </div>
-                <div class="form-group col-md-12">
+                <div id="select4" class="activity-div form-group col-md-12">
                     <label class="control-label col-md-4  "> อันดับ 4</label>
-                    <select class="custom-select custom-select-sm col-md-8  ">
-                        <option>แกล้งเด็ก กำพร้า</option>
-                        <option>กวนตรีนพระ</option>
-                        <option>มีเรื่องกับ แท็กซี่</option>
-                        <option>โดน ตบเกรียน</option>
+                    <select class="activity-option custom-select custom-select-sm col-md-8  ">
                     </select>
                 </div>
                 <div class="form-group col-md-12">
@@ -95,6 +82,44 @@ function doClick(){
         //console.log(result);
     })
 }
+function reloadOption()
+{
+    $(".activity-option").empty();
+    var activity = $("#activity").val();
+    mwit_activities.forEach(function(item,index){
+        if(item.title == activity){
+            item.list.forEach(function(item,index){
+                var html = "<option>" + item.title + "</option>";
+                $(".activity-option").append(html);
+            });
+            // disable other items
+            $(".activity-div").show();
+            if(item.list.length<4){
+                for(var i=item.list.length;i<4;i++){
+                    $("#select" + (i+1)).hide();
+                }
+            }
+        }
+    });
+}
+function reloadData()
+{
+    $("#activity").empty();
+    mwit_activities.forEach(function(item,index){
+        var html = "<option>" + item.title + "</option>";
+        $("#activity").append(html);
+    });
+    reloadOption();
+}
+
+$(document).ready(function () {
+    //Hook select activity change
+    $( "#activity" ).change(function() {
+        reloadOption();
+    });
+    //Load data to table
+    reloadData();
+});
 </script>   
 </body>
 </html>

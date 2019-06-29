@@ -108,10 +108,10 @@ h3 {
 }
 
 .pass {
-    color: green;
+    color: #43AA8B;
 }
 .notpass {
-    color: red;
+    color: #FF336A;
 }
 .swal2-popup {
   font-size: 1.2rem;  

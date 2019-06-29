@@ -36,8 +36,8 @@ function reloadData()
     mwit_activities.forEach(function(item,index){
         var html = template.replace("{{title}}", item.title);
         var list = ""
-        item.list.forEach(function(item,index){
-            list += "<li><div>" + item.title + "</div></li>";
+        item.list.forEach(function(subitem,index){
+            list += "<li><div>" + subitem.title + "</div></li>";
         });
         html = html.replace("{{list}}", list);
         //console.log(html);

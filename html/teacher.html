@@ -9,26 +9,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-
-<div class="container">
-  <div class="row">
-    <div class='col-sm-6'>
-      <div class="form-group">
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Font Awesom cheat sheet -->
@@ -41,20 +26,9 @@
 <script src="mwit.js"></script>
 </head>
 <body>
-<div class="container">
-  <div class="row">
-    <div class='col-sm-6'>
-      <div class="form-group">
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<style>
+
+</style>
 <div class="container-fluid p-0">
     <br>       
     <div class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
@@ -66,42 +40,37 @@
             <div class="panel-body" >
                 <div class="form-group col-md-12">
                     <label for="login" class="control-label col-md-4  requiredField"> ประเภทกิจกรรม </label>
-					<select id="activity" class="custom-select custom-select-sm col-md-4  ">
+                    <div class="controls col-md-8 ">
+					          <select id="activity" class="form-control col-md-12  ">
                     </select>
-                    <!--<select class="activity-option custom-select custom-select-sm col-md-8  ">
-                    </select> -->
-					
+                    </div>
                 </div>
 				<div class="form-group col-md-12">
                     <label for="login" class="control-label col-md-4  requiredField"> สถานที่ </label>
                     <div class="controls col-md-8 ">
-                        <input class="input-md form-control" id="place" name="login" placeholder="" style="margin-bottom: 10px" />
+                        <input class="input-md form-control" id="place" name="place" placeholder="" style="margin-bottom: 10px" />
                     </div>     
                 </div>
                 <div class="form-group col-md-12">
                     <label for="password" class="control-label col-md-4  requiredField"> วันที่ </label>
-                    <div class="controls col-md-8 ">
-                        <input class="input-md form-control" id="date" name="login" placeholder="" style="margin-bottom: 10px" />
-                    </div>     
+                    <div class="container col-md-6">
+                      <div class='input-group date' id='datetimepicker1' >
+                        <input type='text' class="form-control"  id="date" name="date" style="margin-bottom: 10px"/>
+                      </div>
+                    </div>
                 </div>
 				<div class="form-group col-md-12">
                     <label for="password" class="control-label col-md-4  requiredField"> จำนวนชั่วโมงที่ได้รับ </label>
                     <div class="controls col-md-4 ">
-                        <input class="input-md form-control" id="hours" name="login" placeholder="" style="margin-bottom: 10px" />
+                        <input class="input-md form-control" id="hours" name="hours" placeholder="" style="margin-bottom: 10px" />
                     </div>     
                 </div>
 				<div class="form-group col-md-12">
                     <label for="password" class="control-label col-md-4  requiredField"> จำนวนนักเรียนที่รับ </label>
                     <div class="controls col-md-4 ">
-                        <input class="input-md form-control" id="student" name="login" placeholder="" style="margin-bottom: 10px" />
+                        <input class="input-md form-control" id="student" name="student" placeholder="" style="margin-bottom: 10px" />
                     </div>     
                 </div>
-                <!--<div class="form-group col-md-12">
-                    <div class="controls col-md-4 "></div>
-                    <div class="controls col-md-8 ">
-                    <input id="chkShowPassword" type="checkbox" onclick="showPassword()"> Show Password
-                    </div>
-                </div>-->
                 <div class="form-group col-md-12">
                     <div class="controls col-md-4">
                     </div>
@@ -114,7 +83,10 @@
     </div>    
 	</body>
 <script>
+function reloadOption()
+{
 
+}
 function reloadData()
 {
     $("#activity").empty();
@@ -125,15 +97,13 @@ function reloadData()
     reloadOption();
 }
 $(document).ready(function () {
+    $('#date').datetimepicker();
     //Hook select activity change
     $( "#activity" ).change(function() {
         reloadOption();
     });
     //Load data to table
     reloadData();
-});
-$(function() {
-  $('#datetimepicker1').datetimepicker();
 });
 </script>
 </body>

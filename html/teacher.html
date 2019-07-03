@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+      <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Font Awesom cheat sheet -->
+<!-- https://kapeli.com/cheat_sheets/Font_Awesome.docset/Contents/Resources/Documents/index -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+<script src="mwit.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+      <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-0">
+    <br>       
+    <div class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-calendar-check"></i> เพิ่มกิจกรรม </div>
+            </div>  
+            <div class="panel-body" >
+                <div class="form-group col-md-12">
+                    <label for="login" class="control-label col-md-4  requiredField"> ประเภทกิจกรรม </label>
+					<select id="activity" class="custom-select custom-select-sm col-md-4  ">
+                    </select>
+                    <!--<select class="activity-option custom-select custom-select-sm col-md-8  ">
+                    </select> -->
+					
+                </div>
+				<div class="form-group col-md-12">
+                    <label for="login" class="control-label col-md-4  requiredField"> สถานที่ </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md form-control" id="place" name="login" placeholder="" style="margin-bottom: 10px" />
+                    </div>     
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="password" class="control-label col-md-4  requiredField"> วันที่ </label>
+                    <div class="controls col-md-8 ">
+                        <input class="input-md form-control" id="date" name="login" placeholder="" style="margin-bottom: 10px" />
+                    </div>     
+                </div>
+				<div class="form-group col-md-12">
+                    <label for="password" class="control-label col-md-4  requiredField"> จำนวนชั่วโมงที่ได้รับ </label>
+                    <div class="controls col-md-4 ">
+                        <input class="input-md form-control" id="hours" name="login" placeholder="" style="margin-bottom: 10px" />
+                    </div>     
+                </div>
+				<div class="form-group col-md-12">
+                    <label for="password" class="control-label col-md-4  requiredField"> จำนวนนักเรียนที่รับ </label>
+                    <div class="controls col-md-4 ">
+                        <input class="input-md form-control" id="student" name="login" placeholder="" style="margin-bottom: 10px" />
+                    </div>     
+                </div>
+                <!--<div class="form-group col-md-12">
+                    <div class="controls col-md-4 "></div>
+                    <div class="controls col-md-8 ">
+                    <input id="chkShowPassword" type="checkbox" onclick="showPassword()"> Show Password
+                    </div>
+                </div>-->
+                <div class="form-group col-md-12">
+                    <div class="controls col-md-4">
+                    </div>
+                    <div class="controls col-md-8">
+                    <button onclick="doClick()"><i class="fa fa-sign-in-alt"></i>  ยืนยันการเพิ่มกิจกรรม</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>    
+	</body>
+<script>
+
+function reloadData()
+{
+    $("#activity").empty();
+    mwit_activities.forEach(function(item,index){
+        var html = "<option>" + item.type + "</option>";
+        $("#activity").append(html);
+    });
+    reloadOption();
+}
+$(document).ready(function () {
+    //Hook select activity change
+    $( "#activity" ).change(function() {
+        reloadOption();
+    });
+    //Load data to table
+    reloadData();
+});
+$(function() {
+  $('#datetimepicker1').datetimepicker();
+});
+</script>
+</body>
+</html>
